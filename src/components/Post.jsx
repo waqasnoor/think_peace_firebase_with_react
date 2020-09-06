@@ -6,7 +6,7 @@ import { firestore } from "../firebase";
 const Post = ({ title, content, user, createdAt, stars, comments, id }) => {
   const postRef = firestore.doc(`posts/${id}`);
   const onRemove = () => postRef.delete();
-  const starHandler = () => postRef.update({ stars: stars + 1 });
+  const star = () => postRef.update({ stars: stars + 1 });
 
   return (
     <article className="Post">
@@ -32,7 +32,7 @@ const Post = ({ title, content, user, createdAt, stars, comments, id }) => {
           <p>{moment(createdAt.seconds * 1000).calendar()}</p>
         </div>
         <div className="actions">
-          <button className="star" onClick={starHandler}>
+          <button className="star" onClick={star}>
             Star
           </button>
           <button className="delete" onClick={onRemove}>
